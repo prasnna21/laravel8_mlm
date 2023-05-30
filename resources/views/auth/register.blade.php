@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,13 +55,10 @@
                 <span class="nav-link-inner--text">Login Now</span>
               </a>
             </li>
-           
-           
             
           </ul>
         </div>
       </div>
-
     </nav>
     <!-- Header -->
     <div class="header bg-gradient-primary py-7 py-lg-8">
@@ -71,7 +67,6 @@
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
               <h1 class="text-white">Create Your Account</h1>
-              
             </div>
           </div>
         </div>
@@ -83,24 +78,35 @@
       </div>
     </div>
     <!-- Page content -->
-    <div class="container mt--8 pb-5">
+    <div class="container mt--9 pb-2">
       <!-- Table -->
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
-          <div class="card bg-secondary shadow border-0"> 
+          <div class="card bg-secondary shadow border-0">
+            
             <div class="card-body px-lg-5 py-lg-5">
 
 
+@if(Session::has('msg'))
+<div class="alert alert-{{session('msg_class')}}">
+{{session('msg')}}
+</div>
+@endif
 
+              <form role="form" action="{{ route('user.store') }}" method="post"> 
+                @csrf
 
-              <form >
-                
               <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Sponsor Code"  id= "sponsor_id"type="text">
+                    <input class="form-control" name="sponsor_id" value="{{old('sponsor_id')}}" placeholder="Sponsor Code" id="sponsor_id" type="text">
+                    <span id="spon_msg"></span>
+                    @error('sponsor_id')
+                    <br>
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                   </div>
                 </div>
 
@@ -109,8 +115,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="First Name" type="text">
+                    <input class="form-control" name="first_name" value="{{old('first_name')}}" placeholder="First Name" type="text">
                   </div>
+                  @error('first_name')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -118,8 +127,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Last Name" type="text">
+                    <input class="form-control" name="last_name" value="{{old('last_name')}}" placeholder="Last Name" type="text">
                   </div>
+                  @error('last_name')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -127,8 +139,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Create Your Username" type="text">
+                    <input class="form-control" name="username" value="{{old('username')}}" placeholder="Create Your Username" type="text">
                   </div>
+                  @error('username')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -136,8 +151,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Mobile No" type="text">
+                    <input class="form-control" name="mobile" value="{{old('mobile')}}" placeholder="Mobile No" type="text">
                   </div>
+                  @error('mobile')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -145,16 +163,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" name="email" value="{{old('email')}}" placeholder="Email" type="email">
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Password" type="password">
-                  </div>
+                  @error('email')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -162,25 +175,32 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Confirm Password" type="password">
+                    <input class="form-control" name="password" placeholder="Password" type="password">
                   </div>
+                  @error('password')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" name="password_confirmation" placeholder="Confirm Password" type="password">
+                  </div>
+                  @error('password_confirmation')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
                 
-                <div class="row my-4">
-                  <div class="col-12">
-                    <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                      <label class="custom-control-label" for="customCheckRegister">
-                        <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary mt-4">Create account</button>
+                  <button type="submit" id="reg_btn" class="btn btn-primary mt-4">Create account</button>
                 </div>
               </form>
+
+
+
 
 
             </div>
@@ -219,11 +239,11 @@
   </footer>
   </div>
   <!--   Core   -->
-  <script src="dashboard_assets/js/plugins/jquery/dist/jquery.min.js"></script>
-  <script src="dashboard_assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{asset('')}}dashboard_assets/js/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="{{asset('')}}dashboard_assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <!--   Optional JS   -->
   <!--   Argon JS   -->
-  <script src="dashboard_assets/js/argon-dashboard.min.js?v=1.1.2"></script>
+  <script src="{{asset('')}}dashboard_assets/js/argon-dashboard.min.js?v=1.1.2"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
     window.TrackJS &&
@@ -232,28 +252,36 @@
         application: "argon-dashboard-free"
       });
   </script>
-  
-
 
 <script>
-$(document).ready(function() {
-    $('#sponsor_id').on('change', function() {
+$(document).ready(function () {
+    $('#sponsor_id').on('keyup', function () {
+      $("#spon_msg").text('Searching...');
         var sponsor_id = this.value;
         $.ajax({
-            url: "{{ route('search.sponsorid') }}",
+            url: "{{route('search.sponsorid')}}",
             type: "POST",
             data: {
-                sponsor_id: sponsor_id,
-                _token: "{{ csrf_token() }}"
+              sponsor_id: sponsor_id,
+                _token: '{{csrf_token()}}'
             },
-            success: function(result) {
-                alert(result);
+            success: function (result) {
+             if(result==0){
+              $("#spon_msg").text("Not Valid");
+              $("#spon_msg").css('color','red');
+              $("#reg_btn").hide();
+             }else{
+              $("#spon_msg").text(result);
+              $("#spon_msg").css('color','green');
+              $("#reg_btn").show();
+             }
+
             }
         });
     });
-}); 
-  </script>
-  
+});
+</script>
+
 </body>
 
 </html>
