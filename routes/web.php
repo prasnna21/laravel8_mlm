@@ -33,3 +33,4 @@ Route::post('/store',[RegisterController::class,'store'])->name('user.store');
 
 Route::get('/dashboard',[UserDashboardController::class,'index'])->name('user.dashboard');
 //user panel end
+
