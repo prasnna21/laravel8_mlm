@@ -10,10 +10,28 @@ use Hash;
 class RegisterController extends Controller
 {
     
-    public function index()
-    {
-        return view('auth.register');
+    public function index($id = '')
+{
+    if ($id === '') {
+        return view('auth.register', [
+            'sponsor_name' => '',
+            'sponsor_id' => '',
+        ]);
+    } else {
+        $sponsor = User::where(['username' => $id, 'status' => 1])->first();
+        if ($sponsor) {
+            return view('auth.register', [
+                'sponsor_name' => $sponsor->first_name,
+                'sponsor_id' => $sponsor->username,
+            ]);
+        } else {
+            // Handle the case when the sponsor is not found
+            // For example, redirect to an error page or display an error message
+            return response('Sponsor not found', 404);
+        }
     }
+}
+
 
     public function search_sponsorid(Request $request)
     {

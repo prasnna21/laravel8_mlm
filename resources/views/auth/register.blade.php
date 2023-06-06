@@ -101,8 +101,13 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
+                    @if($sponsor_id!='')
+                    <input class="form-control" name="sponsor_id" value="{{old('sponsor_id')}}" placeholder="Sponsor Code" id="sponsor_id" type="text">
+                    <span id="spon_msg">{{$sponsor_name}}</span>
+                    @else
                     <input class="form-control" name="sponsor_id" value="{{old('sponsor_id')}}" placeholder="Sponsor Code" id="sponsor_id" type="text">
                     <span id="spon_msg"></span>
+                    @endif
                     @error('sponsor_id')
                     <br>
                     <span class="text-danger">{{$message}}</span>

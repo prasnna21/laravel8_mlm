@@ -16,6 +16,9 @@
   <link href="{{asset('')}}dashboard_assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="{{asset('')}}dashboard_assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome"/>
+
+  
 </head>
 
 <body class="">
@@ -71,7 +74,7 @@
               <span>Support</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
+            <a href="{{route('user.logout')}}" class="dropdown-item">
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
             </a>
@@ -115,18 +118,18 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./examples/profile.html">
+            <a class="nav-link @yield('profile_active') " href="{{route('user.profile')}}">
               <i class="ni ni-single-02 text-yellow"></i> Profile
             </a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link " href="./examples/maps.html">
+            <a class="nav-link " href="{{route('user.directgroup')}}">
               <i class="ni ni-pin-3 text-orange"></i> Direct Group
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./examples/maps.html">
+            <a class="nav-link " href="{{route('user.levelgroup')}}">
               <i class="ni ni-pin-3 text-orange"></i> Level Group
             </a>
           </li>
@@ -146,7 +149,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./examples/tables.html">
+            <a class="nav-link " href="{{route('user.logout')}}">
               <i class="ni ni-bullet-list-67 text-red"></i> Logout
             </a>
           </li>
